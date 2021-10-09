@@ -1,9 +1,6 @@
 # LEVEL1
 ### SOPTHub 로그인 페이지 만들기(SignInActivity.kt)
-<img src="도전1_캡쳐1.png" width="230">
-<img src="도전1_캡쳐2.png" width="230">
-<img src="도전1_캡쳐3.png" width="230">
-<img src="도전1_캡쳐4.png" width="230"><br>
+<img src="도전1_캡쳐1.png" width="230"><img src="도전1_캡쳐2.png" width="230"><img src="도전1_캡쳐3.png" width="230"><img src="도전1_캡쳐4.png" width="230"><br>
 _깃허브에서 몇 시간동안 열심히 쓴 리드미를 push실수로 다 날려버리고 다시 쓰는 리드미.. 울면서 쓰는 리드미.._
 ```
 val intent = Intent(this, HomeActivity::class.java)
@@ -33,8 +30,7 @@ val intent2 = Intent(this, SignUpActivity::class.java)
 binding으로 버튼에 접근해 setOnClickListener를 사용해서 버튼이 눌렸을 경우 startActivity(intent2)가 실행돼 SignUpActivity로 화면이 전환된다.<br><br><br>
 
 ### SOPTHub 회원가입 페이지 만들기(SignUpActivity.kt)
-<img src="도전2_캡쳐1.png" width="250">
-<img src="도전2_캡쳐2.png" width="250"><br>
+<img src="도전2_캡쳐1.png" width="250"><img src="도전2_캡쳐2.png" width="250"><br>
 ```
         binding.btSu.setOnClickListener {
             var name = binding.etName.text
