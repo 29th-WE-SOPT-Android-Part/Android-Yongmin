@@ -169,7 +169,12 @@
                 android:layout_marginStart="-30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="-30dp"
+<<<<<<< HEAD
                 app:layout_constraintDimensionRatio="1:1"
+=======
+
+                1qqqqqapp:layout_constraintDimensionRatio="1:1"
+>>>>>>> week1
                 app:layout_constraintEnd_toEndOf="@+id/tv_home_title"
                 app:layout_constraintStart_toStartOf="@+id/tv_home_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_home_title"
