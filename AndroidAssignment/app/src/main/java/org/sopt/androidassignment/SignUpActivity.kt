@@ -22,8 +22,8 @@ class SignUpActivity : AppCompatActivity() {
 
             if(!name.isEmpty() && !id.isEmpty() && !pw.isEmpty()){
                 val intent3 = Intent(this, SignInActivity::class.java)
-                intent3.putExtra("id", binding.etSuId.text.toString())
-                intent3.putExtra("pw", binding.etSuPw.text.toString())
+                intent3.putExtra("id", id.toString())
+                intent3.putExtra("pw", pw.toString())
                 startActivity(intent3)
                 Toast.makeText(this, "가입되었습니다", Toast.LENGTH_SHORT).show()
                 finish()
