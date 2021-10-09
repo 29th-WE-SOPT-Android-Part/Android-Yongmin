@@ -1,5 +1,5 @@
 # LEVEL1
-###SOPTHub 로그인 페이지 만들기(SignInActivity.kt)
+### SOPTHub 로그인 페이지 만들기(SignInActivity.kt)
 <img src="도전1_캡쳐1.png" width="230">
 <img src="도전1_캡쳐2.png" width="230">
 <img src="도전1_캡쳐3.png" width="230">
