@@ -52,7 +52,7 @@ _어라..? 근데 왜 위에선 getText()쓰고 여기선 text()를 썼지..? �
 <br><br>
 
 ### SOPTHub 자기소개 페이지 만들기(HomeActivity.kt)
-<img scr="도전2_캡쳐4" width="250"><br>
+<img src="도전2_캡쳐4.png" width="250"><br>
 *LEVEL1을 마치고 캡쳐했어야했는데 LEVEL2과제를 마치고 캡쳐를 해버려서 버튼까지 있습니다,,*<br>
 최대한 과제와 비슷하게 만들기 위해 textSize, fontFamily, textStyle, textColor를 설정해주었습니다.<br><br><br><br>
 
