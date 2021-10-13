@@ -3,9 +3,9 @@
 다음 주에는 진짜 못할 것 같아서 이번 주에 우선 필수 과제만 끝내보았다.<br>
 근데 사실 아직 세미나 때 배운 것을 이해를 못해서 마음으로는 하나하나 뜯어보며 배운 것을 맛보고 싶지만 시험기간이라 시간이 너무 없는 관계로 무지성 코딩,,,<br>
 시험 끝나고부터는 기초부터 공부해서 세미나를 꼭 따라가야지,,<br>
-<img src="week2_level1_1.png" width="230"><img src="week2_level1_2.png" width="230"><img src="week2_level1_3.png" width="230"><img src="week2_level1_4.png" width="230"><br>
+<img src="week2_level1_1.PNG" width="230"><img src="week2_level1_2.PNG" width="230"><img src="week2_level1_3.PNG" width="230"><img src="week2_level1_4.PNG" width="230"><br>
 1주차 과제에서 만들었던 스크롤뷰 위에 만들었습니다. 다만... recyclerview의 FragmentContainer의 height값을 수치로(700dp) 주는 바람에 아래와 같은 불상사가..<br>
-<img src="week2_level1_5.png" width="250"> 이렇게 밑부분이 남고 말았습니다.. 근데 저렇게 수치로 지정안하면 할당되는 영역이 없어져서,,, 어떻게 해야할지 몰라 그냥 수치로 지정해버렸습니다,,<br>
+<img src="week2_level1_5.PNG" width="250"> 이렇게 밑부분이 남고 말았습니다.. 근데 저렇게 수치로 지정안하면 할당되는 영역이 없어져서,,, 어떻게 해야할지 몰라 그냥 수치로 지정해버렸습니다,,<br>
 <br>
 우선 recyclerview안에 넣을 아이템들의 xml파일부터 만들었습니다. git_follower_list가 팔로워들을 나타낼 아이템 디자인?이고, git_repository_list가 레포지토리들을 나타낼 아이템 디자인?입니다.<br>
 그리고 fragment 파일 두 개를 만들었습니다. (FollowerList, fragment_follower_list), (RepositoryListFragment, fragment_repository_list)가 각각의 kt파일과 xml파일입니다.<br>
