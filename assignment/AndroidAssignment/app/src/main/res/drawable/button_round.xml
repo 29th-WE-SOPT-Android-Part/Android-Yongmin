@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:shape="rectangle">  //10만큼 각모서리에
+
+   <stroke android:width="3dp"
+       android:color="#f06292"/>
+
+   <solid android:color="#FFFFFF"/> //내부 색 설정
+    <corners
+        android:topLeftRadius="12dp"
+        android:topRightRadius="12dp"
+        android:bottomLeftRadius="12dp"
+        android:bottomRightRadius="12dp"/> //각 모서리를 12dp만큼 둥글게 만들겠다ㅣ.
+
+</shape>
