@@ -1,14 +1,11 @@
 package org.sopt.androidassignment
 
-import android.annotation.SuppressLint
-import android.graphics.drawable.ClipDrawable.VERTICAL
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.sopt.androidassignment.databinding.FragmentRepositoryListBinding
 
 class RepositoryListFragment : Fragment() {
@@ -22,7 +19,7 @@ class RepositoryListFragment : Fragment() {
         _binding = FragmentRepositoryListBinding.inflate(layoutInflater, container, false)
         initAdapter()
         binding.rvRepository.adapter = repositoryAdapter
-        binding.rvRepository.layoutManager=GridLayoutManager(activity, 2)
+        binding.rvRepository.layoutManager= GridLayoutManager(activity, 2)
         return binding.root
     }
 
@@ -44,7 +41,7 @@ class RepositoryListFragment : Fragment() {
                 RepositoryData("솝탁 스터디\n레포지토리", "알고리즘 과제"),
                 RepositoryData("풋살 스터디\n레포지토리", "개발스터디란 우리가 개발이라는"),
 
-            )
+                )
         )
     }
 }

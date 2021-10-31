@@ -1,40 +1,72 @@
 package org.sopt.androidassignment
 
-import android.content.ActivityNotFoundException
-import android.content.Intent
-import android.net.Uri
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.viewpager2.widget.ViewPager2
 import org.sopt.androidassignment.databinding.ActivityHomeBinding
+import org.sopt.androidassignment.databinding.FragmentProfileBinding
 
 
 class HomeActivity : AppCompatActivity() {
-    private var position = FIRST_FRAGMENT
     private lateinit var binding : ActivityHomeBinding
+    private var position = FOLL_FRAGMENT
+    private lateinit var binding2 : FragmentProfileBinding
+    private lateinit var sampleViewPagerAdapter: SampleViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
-        val address : Intent = Uri.parse("https://github.com/briandr97").let{webpage->Intent(Intent.ACTION_VIEW, webpage)}
 
-        //val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/briandr97"))
+        initAdapter()
+        initBottomNavigation()
+        //initTransactionEvent()
+        setContentView(binding.root)
+    }
 
+    private fun initAdapter(){
 
-        binding.btHomeGit.setOnClickListener{
-            //val intent = Intent(Intent.ACTION_SEND)
-            //val title = resources.getString(R.string.chooser_title)
-            //val chooser = createChooser(intent, title)
-            try{
-                startActivity(address)
-            }catch(e:ActivityNotFoundException){
-                Toast.makeText(this, "실행할 수 있는 앱이 없습니다.", Toast.LENGTH_SHORT).show()
+        val fragmentList = listOf(ProfileFragment(), HomeFragment(), CameraFragment())
+
+        sampleViewPagerAdapter = SampleViewPagerAdapter(this)
+        sampleViewPagerAdapter.fragments.addAll(fragmentList)
+
+        binding.vpSample.adapter = sampleViewPagerAdapter
+    }
+
+    private fun initBottomNavigation(){
+        binding.vpSample.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                binding.bnvSample.menu.getItem(position).isChecked=true
+            }
+        })
+
+        binding.bnvSample.setOnItemSelectedListener{
+            when(it.itemId){
+                R.id.menu_android->{
+                    binding.vpSample.currentItem=FIRST_FRAGMENT
+                    return@setOnItemSelectedListener true
+                }
+                R.id.menu_list->{
+                    binding.vpSample.currentItem= SECOND_FRAGMENT
+                    return@setOnItemSelectedListener true
+                }
+                else->{
+                    binding.vpSample.currentItem= THIRD_FRAGMENT
+                    return@setOnItemSelectedListener true
+                }
             }
         }
+    }
 
-        initTransactionEvent()
-        setContentView(binding.root)
+    companion object{
+        const val FIRST_FRAGMENT=0
+        const val SECOND_FRAGMENT=1
+        const val THIRD_FRAGMENT=2
+
+        const val FOLL_FRAGMENT = 1
+        const val REPO_FRAGMENT = 2
     }
 
     fun initTransactionEvent(){
@@ -42,31 +74,31 @@ class HomeActivity : AppCompatActivity() {
         val fragment2 = RepositoryListFragment()
         supportFragmentManager.beginTransaction().add(R.id.container_fragment, fragment1).commit()
 
-        binding.btHomeFollower.setOnClickListener{
+        binding2.btHomeFollower.setOnClickListener{
             val transaction = supportFragmentManager.beginTransaction()
 
             when(position){
-                FIRST_FRAGMENT->{
+                FOLL_FRAGMENT->{
                     transaction.replace(R.id.container_fragment, fragment1)
-                    position = FIRST_FRAGMENT
+                    position = FOLL_FRAGMENT
                 }
-                SECOND_FRAGMENT->{
+                REPO_FRAGMENT->{
                     transaction.replace(R.id.container_fragment, fragment1)
-                    position= FIRST_FRAGMENT
+                    position= FOLL_FRAGMENT
                 }
             }
             transaction.commit()
         }
-        binding.btHomeRepository.setOnClickListener{
+        binding2.btHomeRepository.setOnClickListener{
             val transaction = supportFragmentManager.beginTransaction()
             when(position){
-                FIRST_FRAGMENT->{
+                FOLL_FRAGMENT->{
                     transaction.replace(R.id.container_fragment, fragment2)
-                    position= SECOND_FRAGMENT
+                    position= REPO_FRAGMENT
                 }
-                SECOND_FRAGMENT->{
+                REPO_FRAGMENT->{
                     transaction.replace(R.id.container_fragment, fragment2)
-                    position= SECOND_FRAGMENT
+                    position= REPO_FRAGMENT
                 }
             }
 
@@ -74,8 +106,4 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    companion object{
-        const val FIRST_FRAGMENT = 1
-        const val SECOND_FRAGMENT = 2
-    }
 }

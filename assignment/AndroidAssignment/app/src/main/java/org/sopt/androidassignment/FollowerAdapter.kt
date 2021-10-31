@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.sopt.androidassignment.databinding.GitFollowerListBinding
 
 class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>(){
-    val userList = mutableListOf<UserData>()
+    val userList = mutableListOf<FollowerData>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,10 +24,10 @@ class FollowerAdapter : RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder>
 
     class FollowerViewHolder(private val binding : GitFollowerListBinding)
         : RecyclerView.ViewHolder(binding.root){
-            fun onBind(data:UserData){
-                binding.tvFollowerName.text = data.name
-                binding.tvFollowerIntroduce.text = data.introduction
-            }
+        fun onBind(data:FollowerData){
+            binding.tvFollowerName.text = data.name
+            binding.tvFollowerIntroduce.text = data.introduction
         }
+    }
 
 }

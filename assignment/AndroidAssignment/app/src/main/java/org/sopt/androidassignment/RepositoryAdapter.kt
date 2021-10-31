@@ -1,6 +1,5 @@
 package org.sopt.androidassignment
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,9 +24,9 @@ class RepositoryAdapter : RecyclerView.Adapter<RepositoryAdapter.RepositoryViewH
 
     class RepositoryViewHolder(private val binding:GitRepositoryListBinding)
         :RecyclerView.ViewHolder(binding.root){
-            fun onBind(data:RepositoryData){
-                binding.tvRepository.text = data.repo
-                binding.tvIntro.text = data.intro
-            }
+        fun onBind(data:RepositoryData){
+            binding.tvRepository.text = data.repo
+            binding.tvIntro.text = data.intro
         }
+    }
 }
