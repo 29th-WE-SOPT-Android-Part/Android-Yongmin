@@ -1,0 +1,46 @@
+package org.sopt.study.againassignment
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import org.sopt.study.againassignment.databinding.ActivityHomeBinding
+
+class HomeActivity : AppCompatActivity() {
+    private var position = FIRST_POSITION
+    private lateinit var binding: ActivityHomeBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        initTransactionEvent()
+        setContentView(binding.root)
+    }
+
+    private fun initTransactionEvent(){
+        val fragment1 = SampleFragment1()
+        val fragment2 = SampleFragment2()
+
+        supportFragmentManager.beginTransaction().add(R.id.container_main, fragment1).commit()
+
+        binding.btChange.setOnClickListener{
+            val transaction = supportFragmentManager.beginTransaction()
+
+            when(position){
+                FIRST_POSITION->{
+                    transaction.replace(R.id.container_main, fragment2)
+                    position = SECOND_POSITION
+                }
+                SECOND_POSITION->{
+                    transaction.replace(R.id.container_main, fragment1)
+                    position= FIRST_POSITION
+                }
+            }
+            transaction.commit()
+        }
+    }
+
+    companion object{
+        const val FIRST_POSITION=1
+        const val SECOND_POSITION=2
+    }
+}
