@@ -97,3 +97,6 @@ private fun initNetwork(){
         })
     }
 ```
+<br>
++추가로 postman 이미지입니당,,<br>
+<img src="postman1.png" width="250"><br>
