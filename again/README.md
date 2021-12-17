@@ -17,6 +17,8 @@ binding.tvNextbutton.setOnClickListener{
     <source src="7주차과제.mp4">
 </video>
 
+<img width="80%" src="https://user-images.githubusercontent.com/78788847/146560381-29e14987-661f-4266-afd1-a5257b54e661.mp4"/>
+
 ### 2. SharedPreferences 활용해서 자동로그인/자동로그인 해제 구현하기
 
 ```
