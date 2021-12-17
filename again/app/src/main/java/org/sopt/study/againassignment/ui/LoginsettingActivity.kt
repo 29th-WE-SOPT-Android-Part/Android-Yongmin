@@ -2,8 +2,7 @@ package org.sopt.study.againassignment.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import org.sopt.study.againassignment.R
-import org.sopt.study.againassignment.SOPTSharedPreferences
+import org.sopt.study.againassignment.server.SOPTSharedPreferences
 import org.sopt.study.againassignment.databinding.ActivityLoginsettingBinding
 import org.sopt.study.againassignment.databinding.ActivityMainBinding
 import org.sopt.study.againassignment.shortToast

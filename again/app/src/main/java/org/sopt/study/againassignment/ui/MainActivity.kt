@@ -8,6 +8,8 @@ import org.sopt.study.againassignment.*
 import org.sopt.study.againassignment.data.RequestLoginData
 import org.sopt.study.againassignment.data.ResponseLoginData
 import org.sopt.study.againassignment.databinding.ActivityMainBinding
+import org.sopt.study.againassignment.server.SOPTSharedPreferences
+import org.sopt.study.againassignment.server.ServiceCreator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

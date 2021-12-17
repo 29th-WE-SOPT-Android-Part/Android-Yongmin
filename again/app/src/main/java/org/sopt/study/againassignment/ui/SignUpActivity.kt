@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import org.sopt.study.againassignment.data.RequestSignupData
 import org.sopt.study.againassignment.data.ResponseSignupData
-import org.sopt.study.againassignment.ServiceCreator
+import org.sopt.study.againassignment.server.ServiceCreator
 import org.sopt.study.againassignment.databinding.ActivitySignUpBinding
 import retrofit2.Call
 import retrofit2.Callback

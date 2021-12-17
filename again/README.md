@@ -1,102 +1,85 @@
-### 4주차 필수과제 리드미
-먼저 3주차 과제를 오류로 실패하여 모든 것을 처음부터 새로 만들었습니다.<br>
-그래서 맨 처음 화면인 로그인 화면과 회원가입 화면만 제대로 구성했고 로그인하면 나오는 화면은 제대로 제대로 구현하지 않았습니다.<br>
-### 회원가입 화면
-<img src="회원가입1.png" width="250"><img src="회원가입2.png" width="250"><img src="회원가입3.png" width="250"><br>
-### 로그인 성공 화면
-<img src="로그인성공1.png" width="250"><img src="로그인성공2.png" width="250"><br>
-### 로그인 실패 화면
-<img src="로그인실패1.png" width="250"><img src="로그인실패2.png" width="250"><br>
-<br>
-먼저 로그인 부분은 세미나에서 했던 그대로 했습니다.(액티비티 이름만 바꿔주었습니다.)<br>
-그리고 로그인 부분을 응용해서 회원가입 부분을 만들었습니다.<br>
-회원가입에 사용될 RequestData파일과 ResponseData파일을 새로 만들고<br>
-_RequestData파일_<br>
-```
-data class RequestSignupData(
-    @SerializedName("email")
-    val id: String,
-    val name: String,
-    val password: String
-)
-```
-_ResponseData파일_<br>
-```
-data class ResponseSignupData(
-    val status: Int,
-    val success: Boolean,
-    val message: String,
-    val data: Data2
-)
+# 7주차 과제
 
-data class Data2(
-    val id: Int,
-    val name: String,
-    val email: String
-)
+### 1. 온보딩 화면 만들기
+fragment 세 개를 만들고 fragment를 담을 activity와 res폴더에 navigation파일을 만듭니다.
+
+navigation파일에서 fragment 세 개와 온보딩 이후 접속될 mainActivity를 추가하고 드래그앤드롭으로 연결합니다.
+
+그리고 각 프레그먼트에서 버튼의 setOnClickListener에서 findNavController를 이용해서 action을 지정해줍니다.
 ```
-근데 Response파일은 로그인 할 때나 회원가입할 때나 같은데 그냥 하나로 쓰면 안되나..?라는 궁금증이 갑자기 리드미 쓰면서 생기네요<br>
-<br>
-그리고 회원가입에 대한 interface를 만들었습니다.<br>
-```
-interface SignUp {
-    @Headers("Content-Type:application/json")
-    @POST("user/signup")
-    fun postSignup(
-        @Body body : RequestSignupData
-    ) : Call<ResponseSignupData>
+binding.tvNextbutton.setOnClickListener{  
+  findNavController().navigate(R.id.action_onboardingFragment3_to_mainActivity)  
+    (activity as StartActivity).finish()  
 }
 ```
-<br>
-그리고 생성자에 val signup을 선언합니다.<br>
+그리고 위처럼 finish를 이용해서 액티비티를 종료시켜줍니다.
+<video width="320" height="240" controls autoply loop>
+    <source src="7주차과제.mp4">
+</video>
+
+### 2. SharedPreferences 활용해서 자동로그인/자동로그인 해제 구현하기
 
 ```
-object ServiceCreator {
-    private const val BASE_URL = "https://asia-northeast3-we-sopt-29.cloudfunctions.net/api/"
-
-    private val retrofit : Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    val sampleService: SampleService = retrofit.create(SampleService::class.java)
-    val signup : SignUp = retrofit.create(SignUp::class.java)
+package org.sopt.study.againassignment.server  
+  
+import android.content.Context  
+import android.content.SharedPreferences  
+  
+object SOPTSharedPreferences {  
+    private const val USER_AUTH = "USER_AUTH"  
+  private const val AUTO_LOGIN = "AUTO_LOGIN"  
+  
+  lateinit var preferences: SharedPreferences  
+  
+  fun getAutoLogin(context: Context) : Boolean{  
+        preferences = setpref(context)  
+        return preferences.getBoolean(AUTO_LOGIN, false)  
+    }  
+  
+    fun setAutoLogin(context: Context, auto:Boolean) {  
+        preferences = setpref(context)  
+  
+        preferences.edit()  
+            .putBoolean(AUTO_LOGIN, auto)  
+            .apply()  
+    }  
+  
+    fun removeAutoLogin(context: Context){  
+        preferences = setpref(context)  
+        preferences.edit()  
+            .remove(AUTO_LOGIN)  
+            .apply()  
+    }  
+  
+    fun clearStorage(context:Context){  
+        preferences = setpref(context)  
+        preferences.edit()  
+            .clear()  
+            .apply()  
+    }  
+  
+    fun setpref(context: Context):SharedPreferences{  
+        val preferences = context.getSharedPreferences(USER_AUTH, Context.MODE_PRIVATE)  
+        return preferences  
+  }  
 }
 ```
-<br>
-회원가입 액티비티에서 사용할 initNetWork 함수를 만들었습니다.<br>
-사실 로그인에서 사용했던 것에서 name만 추가하고 이름만 바꿔주면 됩니다,,<br>
 
+이렇게 preferences를 lateinit var을 통해서 선언하고 setpref를 통해 코드를 간소화했습니다.
 ```
-private fun initNetwork(){
-        val requestSignupData = RequestSignupData(
-            id = binding.etSignupId.text.toString(),
-            name = binding.etSignupName.text.toString(),
-            password = binding.etSignupPw.text.toString()
-        )
-
-        val call: Call<ResponseSignupData> = ServiceCreator.signup.postSignup(requestSignupData)
-
-        call.enqueue(object: Callback<ResponseSignupData> {
-            override fun onResponse(
-                call: Call<ResponseSignupData>,
-                response: Response<ResponseSignupData>
-            ) {
-                if(response.isSuccessful){
-                    val data = response.body()?.data
-
-                    Toast.makeText(this@SignUpActivity, "${data?.email}님 회원가입 되었습니다!", Toast.LENGTH_SHORT).show()
-                    finish()
-                } else
-                    Toast.makeText(this@SignUpActivity, "회원가입에 실패하셨습니다", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onFailure(call: Call<ResponseSignupData>, t: Throwable) {
-                Log.e("NetWorkTest", "error:$t")
-            }
-        })
-    }
+binding = ActivityLoginsettingBinding.inflate(layoutInflater)  
+binding2 = ActivityMainBinding.inflate(layoutInflater)  
+  
+binding.btAutoRemove.setOnClickListener{  
+  binding2.ivAutoLogin.isSelected=false  
+  SOPTSharedPreferences.removeAutoLogin(this)  
+    shortToast("자동로그인 해제되었습니다")  
+    finish()  
+}
 ```
-<br>
-+추가로 postman 이미지입니당,,<br>
-<img src="postman1.PNG" width="700"><br>
+그리고 환경설정 액티비티에서 위와 같이 자동로그인을 해제해줍니다.
+
+### 본인이 사용하는 Util 클래스 코드 및 패키징 방식 리드미에 정리하기
+
+<img src="7주차1.PNG" width="250">
+위와 같이 저는 data파일들은 data패키지에 / 서버통신 관련 파일들은 server패키지에 / 액티비티, 프레그먼트, 어댑터는 ui 패키지에 / 나머지는 etc 패키지에 분류했습니다.
