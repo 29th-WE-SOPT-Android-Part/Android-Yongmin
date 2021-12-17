@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -120,14 +120,33 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="41dp"
-        android:text="회원가입"
-        android:textSize="12sp"
-        android:textColor="#828282"
         android:fontFamily="@font/noto_sans_kr"
+        android:text="회원가입"
+        android:textColor="#828282"
         android:textFontWeight="700"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/tv_no_id" />
+
+    <TextView
+        android:id="@+id/tv_auto_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="자동로그인"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_login_id"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/iv_auto_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_auto_login"
+        app:layout_constraintEnd_toStartOf="@+id/tv_auto_login"
+        app:layout_constraintTop_toTopOf="@+id/tv_auto_login"
+        app:srcCompat="@drawable/selector_checkbox" />
 </androidx.constraintlayout.widget.ConstraintLayout>
