@@ -13,11 +13,8 @@ binding.tvNextbutton.setOnClickListener{
 }
 ```
 그리고 위처럼 finish를 이용해서 액티비티를 종료시켜줍니다.
-<video width="320" height="240" controls autoply loop>
-    <source src="7주차과제.mp4">
-</video>
-
-<img width="80%" src="https://user-images.githubusercontent.com/78788847/146560381-29e14987-661f-4266-afd1-a5257b54e661.mp4"/>
+<img src="7주차과제1.gif" width="250">
+<img src="7주차과제2.gif" width="250">
 
 ### 2. SharedPreferences 활용해서 자동로그인/자동로그인 해제 구현하기
 
